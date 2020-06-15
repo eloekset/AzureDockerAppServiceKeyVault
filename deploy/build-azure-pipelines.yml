@@ -36,7 +36,7 @@ steps:
   displayName: Copy ARM template and Dockerfile to artifacts
   inputs:
     targetType: 'inline'
-    script: 'cp $(Build.SourcesDirectory)/Dockerfile $(Build.ArtifactStagingDirectory) && cp $(Build.SourcesDirectory)/azuredeploy*.json $(Build.ArtifactStagingDirectory)'
+    script: 'cp $(Build.SourcesDirectory)/Dockerfile $(Build.ArtifactStagingDirectory) && cp $(Build.SourcesDirectory)/deploy/azuredeploy*.json $(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   displayName: "Upload Artifacts"
