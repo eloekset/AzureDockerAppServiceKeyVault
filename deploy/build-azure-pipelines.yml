@@ -33,10 +33,10 @@ steps:
     zipAfterPublish: true
 
 - task: Bash@3
-  displayName: Copy Dockerfile to artifacts
+  displayName: Copy ARM template and Dockerfile to artifacts
   inputs:
     targetType: 'inline'
-    script: 'cp $(Build.SourcesDirectory)/Dockerfile $(Build.ArtifactStagingDirectory)'
+    script: 'cp $(Build.SourcesDirectory)/Dockerfile $(Build.ArtifactStagingDirectory) && cp $(Build.SourcesDirectory)/azuredeploy*.json $(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   displayName: "Upload Artifacts"
