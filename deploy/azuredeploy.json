@@ -132,7 +132,12 @@
         "apiVersion": "2018-02-01",
         "name": "[parameters('hostingPlanName')]",
         "location": "[parameters('location')]",
-        "properties": { }
+        "sku": {
+            "name": "[parameters('servicePlanSku')]"
+        },
+        "properties": {
+            "workerTierName": "[parameters('servicePlanTier')]"
+        }
     },
     {
         "type": "Microsoft.KeyVault/vaults",
