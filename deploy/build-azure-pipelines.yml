@@ -29,7 +29,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-r linux-x64 --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '-r linux-x64 --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-self-contained'
     zipAfterPublish: true
 
 - task: Bash@3
