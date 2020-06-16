@@ -20,6 +20,9 @@
         "acrName": {
             "value": "acr-name"
         },
+        "acrLocation": {
+            "value": "West Europe"
+        },
         "identityType": {
             "value": "SystemAssigned"
         },

@@ -73,6 +73,12 @@
                 "description": "Azure Container Registry name containing Docker image to deploy"
             }
         },
+        "containerLocation": {
+            "type": "string",
+            "metadata": {
+                "description": "ACR isn't available in Norway yet, so it must be in a different region."
+            }
+        },
         "containerId": {
             "type": "string",
             "metadata": {
