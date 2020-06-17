@@ -2,6 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "siteName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of Azure Webapp"
+            }
+        },
         "location": {
             "type": "string",
             "defaultValue": "[resourceGroup().location]",
@@ -36,7 +42,15 @@
                 "name": "standard",
                 "family": "A"
             },
-            "accessPolicies": []
+            "accessPolicies": [
+                {
+                    "tenantId": "[parameters('tenantId')]",
+                    "objectId": "[reference(resourceId('Microsoft.Web/sites', parameters('siteName')))]",
+                    "permissions": {
+                        "certificates": ["get", "list"]
+                    }
+                }
+            ]
         }
     }],
     "outputs": {}
