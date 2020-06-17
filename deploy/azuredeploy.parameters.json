@@ -5,14 +5,29 @@
         "siteName": {
             "value": "docker-keyvault-test"
         },
+        "hostingPlanName": {
+            "value": "docker-keyvault-test-hostingPlan"
+        },
         "tenantId": {
             "value": "guid"
+        },
+        "acrName": {
+            "value": "acr-name"
+        },
+        "identityType": {
+            "value": "SystemAssigned"
         },
         "keyVaultName": {
             "value": "DemoDocker" 
         },
         "location": {
             "value": "Norway East"
+        },
+        "containerId": {
+            "value": "DemoWithKeyVault"
+        },
+        "containerVersion": {
+            "value": "set-from-deploy-pipeline"
         }
     }
 }
