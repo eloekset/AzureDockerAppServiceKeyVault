@@ -8,11 +8,11 @@
         "hostingPlanName": {
             "value": "docker-keyvault-test-hostingPlan"
         },
-        "servicePlanSku": {
-            "value": "S1"
+        "skuName": {
+          "value": "S1"
         },
-        "servicePlanTier": {
-            "value": "Standard"
+        "skuCapacity": {
+          "value": "1"
         },
         "tenantId": {
             "value": "guid"
