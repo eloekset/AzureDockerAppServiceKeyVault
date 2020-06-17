@@ -63,13 +63,12 @@
     "functions": [],
     "variables": {
         "webAppPrincipalId": "",
-        "webAppTenantId": "[parameters('tenantId')]",
         "webAppIdentityType": "[parameters('identityType')]",
         "acrUri": "[concat(parameters('acrName'), 'azurecr.io/', parameters('containerId'), ':', parameters('containerVersion'))]",
         "linuxFxVersion": "[concat('DOCKER|', variables('acrUri'))]"
     },
     "resources": [
-        {
+    {
         "type": "Microsoft.Web/sites",
         "apiVersion": "2018-11-01",
         "name": "[parameters('siteName')]",
@@ -105,7 +104,8 @@
         "type": "Microsoft.Web/serverfarms",
         "apiVersion": "2018-02-01",
         "name": "[parameters('hostingPlanName')]",
-        "location": "[parameters('location')]"
+        "location": "[parameters('location')]",
+        "properties": {}
     },
     {
         "type": "Microsoft.KeyVault/vaults",
