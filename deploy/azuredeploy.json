@@ -29,6 +29,23 @@
                 "description": "Size for Service Plan"
             }
         },
+        "servicePlanTier": {
+            "type": "string",
+            "allowedValues": [
+                "Shared",
+                "Free",
+                "Basic",
+                "Standard",
+                "Premium",
+                "PremiumV2",
+                "Isolated",
+                "Dynamic"
+            ],
+            "defaultValue": "Standard",
+            "metadata": {
+                "description": "Tier for Service Plan"
+            }
+        },
         "location": {
             "type": "string",
             "defaultValue": "[resourceGroup().location]",
@@ -121,7 +138,11 @@
         "name": "[parameters('hostingPlanName')]",
         "location": "[parameters('location')]",
         "sku": {
-            "name": "[parameters('servicePlanSku')]"
+            "name": "[parameters('servicePlanSku')]",
+            "tier": "[parameters('servicePlanTier')]",
+            "locations": [
+                "[parameters('location')]"
+            ]
         },
         "properties": {}
     },

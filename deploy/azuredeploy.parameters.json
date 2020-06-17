@@ -11,6 +11,9 @@
         "servicePlanSku": {
             "value": "S1"
         },
+        "servicePlanTier": {
+            "value": "Standard"
+        },
         "tenantId": {
             "value": "guid"
         },
