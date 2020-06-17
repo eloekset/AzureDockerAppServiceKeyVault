@@ -6,6 +6,7 @@
 trigger:
     - master
     - feature/azure-pipelines
+    - feature/simple-armtemplate
     
 pool:
   vmImage: 'ubuntu-latest'
