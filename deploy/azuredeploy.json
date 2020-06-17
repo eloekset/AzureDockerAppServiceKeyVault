@@ -14,6 +14,32 @@
                 "description": "Name of App Service Plan"
             }
         },
+        "servicePlanTier": {
+            "type": "string",
+                "allowedValues": [
+                    "Basic",
+                    "Standard"
+                ],
+                "defaultValue": "Standard",
+                "metadata": {
+                    "description": "Tier for Service Plan"
+                }
+            },
+        "servicePlanSku": {
+            "type": "string",
+            "allowedValues": [
+                "B1",
+                "B2",
+                "B3",
+                "S1",
+                "S2",
+                "S3"
+            ],
+            "defaultValue": "S1",
+            "metadata": {
+                "description": "Size for Service Plan"
+            }
+        },
         "location": {
             "type": "string",
             "defaultValue": "[resourceGroup().location]",
@@ -100,6 +126,18 @@
             "linuxFxVersion":"[variables('linuxFxVersion')]",
             "alwaysOn": true,
             "minTlsVersion": "1.2"
+        }
+    },
+    {
+        "type": "Microsoft.Web/serverfarms",
+        "apiVersion": "2018-02-01",
+        "name": "[parameters('hostingPlanName')]",
+        "location": "[parameters('location')]",
+        "sku": {
+            "name": "[parameters('servicePlanSku')]"
+        },
+        "properties": {
+            "workerTierName": "[parameters('servicePlanTier')]"
         }
     },
     {
