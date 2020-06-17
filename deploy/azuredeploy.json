@@ -139,10 +139,7 @@
         "location": "[parameters('location')]",
         "sku": {
             "name": "[parameters('servicePlanSku')]",
-            "tier": "[parameters('servicePlanTier')]",
-            "locations": [
-                "[parameters('location')]"
-            ]
+            "tier": "[parameters('servicePlanTier')]"
         },
         "properties": {}
     },
