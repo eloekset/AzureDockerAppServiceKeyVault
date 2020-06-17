@@ -9,142 +9,22 @@
                 "description": "Location for all the resources"
             }
         },
-        "servicePlanTier": {
-            "type": "string",
-                "allowedValues": [
-                    "Basic",
-                    "Standard"
-                ],
-                "defaultValue": "Standard",
-                "metadata": {
-                    "description": "Tier for Service Plan"
-                }
-            },
-        "servicePlanSku": {
-            "type": "string",
-            "allowedValues": [
-                "B1",
-                "B2",
-                "B3",
-                "S1",
-                "S2",
-                "S3"
-            ],
-            "defaultValue": "S1",
-            "metadata": {
-                "description": "Size for Service Plan"
-            }
-        },
-        "siteName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of Azure Webapp"
-            }
-        },
-        "hostingPlanName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of App Service Plan"
-            }
-        },
         "tenantId": {
             "type": "string",
             "metadata": {
                 "description": "Azure AD tenant for RBAC access to Key Vault"
             }
         },
-        "identityType": {
-            "type": "string",
-            "allowedValues": [
-                "SystemAssigned",
-                "USerAssigned",
-                "None"
-            ]
-        },
         "keyVaultName": {
             "type": "string",
             "metadata": {
                 "description": "Key Vault containing private certificate for IdentityServer"
             }
-        },
-        "acrName": {
-            "type": "string",
-            "metadata": {
-                "description": "Azure Container Registry name containing Docker image to deploy"
-            }
-        },
-        "containerLocation": {
-            "type": "string",
-            "metadata": {
-                "description": "ACR isn't available in Norway yet, so it must be in a different region."
-            }
-        },
-        "containerId": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of Docker container in ACR"
-            }
-        },
-        "containerVersion": {
-            "type": "string",
-            "metadata": {
-                "description": "The version of Docker image to deploy"
-            }
         }
     },
     "functions": [],
-    "variables": {
-        "webAppPrincipalId": "",
-        "webAppTenantId": "[parameters('tenantId')]",
-        "webAppIdentityType": "[parameters('identityType')]",
-        "acrUri": "[concat(parameters('acrName'), 'azurecr.io/', parameters('containerId'), ':', parameters('containerVersion'))]",
-        "linuxFxVersion": "[concat('DOCKER|', variables('acrUri'))]"
-    },
-    "resources": [{
-        "type": "Microsoft.Web/sites",
-        "apiVersion": "2018-11-01",
-        "name": "[parameters('siteName')]",
-        "location": "[parameters('location')]",
-        "kind": "app,linux,container",
-        "identity": {
-            "principalId": "[variables('webAppPrincipalId')]",
-            "tenantId": "[variables('webAppTenantId')]",
-            "type": "[variables('webAppIdentityType')]"
-        },
-        "tags": {},
-        "dependsOn": [
-            "[parameters('hostingPlanName')]"
-        ],
-        "properties": {
-            "name": "[parameters('siteName')]",
-            "serverFarmId": "[parameters('hostingPlanName')]",
-            "httpsOnly": true
-        }
-    }, 
-    {
-        "type": "Microsoft.Web/sites/config",
-        "apiVersion": "2018-11-01",
-        "name": "[concat(parameters('siteName'), '/web')]",
-        "location": "[parameters('location')]",
-        "dependsOn": ["[resourceId('Microsoft.Web/sites', parameters('siteName'))]"],
-        "properties": {
-            "linuxFxVersion":"[variables('linuxFxVersion')]",
-            "alwaysOn": true,
-            "minTlsVersion": "1.2"
-        }
-    },
-    {
-        "type": "Microsoft.Web/serverfarms",
-        "apiVersion": "2018-02-01",
-        "name": "[parameters('hostingPlanName')]",
-        "location": "[parameters('location')]",
-        "sku": {
-            "name": "[parameters('servicePlanSku')]"
-        },
-        "properties": {
-            "workerTierName": "[parameters('servicePlanTier')]"
-        }
-    },
+    "variables": {},
+    "resources": [
     {
         "type": "Microsoft.KeyVault/vaults",
         "apiVersion": "2016-10-01",
@@ -156,15 +36,7 @@
                 "name": "standard",
                 "family": "A"
             },
-            "accessPolicies": [
-                {
-                    "tenantId": "[parameters('tenantId')]",
-                    "objectId": "[reference(resourceId('Microsoft.Web/sites', parameters('siteName')))]",
-                    "permissions": {
-                        "certificates": ["get", "list"]
-                    }
-                }
-            ]
+            "accessPolicies": []
         }
     }],
     "outputs": {}
