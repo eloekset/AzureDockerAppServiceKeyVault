@@ -77,7 +77,6 @@
         "kind": "app,linux,container",
         "identity": {
             "principalId": "[variables('webAppPrincipalId')]",
-            "tenantId": "[variables('webAppTenantId')]",
             "type": "[variables('webAppIdentityType')]"
         },
         "tags": {},
