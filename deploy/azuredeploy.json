@@ -109,7 +109,7 @@
         },
         "tags": {},
         "dependsOn": [
-            "[parameters('hostingPlanName')]"
+            "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
         ],
         "properties": {
             "name": "[parameters('siteName')]",
@@ -131,7 +131,7 @@
     },
     {
         "type": "Microsoft.Web/serverfarms",
-        "apiVersion": "2018-02-01",
+        "apiVersion": "2015-08-01",
         "name": "[parameters('hostingPlanName')]",
         "location": "[parameters('location')]",
         "sku": {
